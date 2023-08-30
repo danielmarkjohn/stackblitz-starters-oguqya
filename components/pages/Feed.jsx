@@ -7,7 +7,8 @@ import {
   IonTitle,
   IonContent,
 } from '@ionic/react';
-import QRCode from "react-qr-code";
+import QRCode from 'react-qr-code';
+import { useHistory } from 'react-router-dom';
 
 const styles = `
   .feed-page {
@@ -47,7 +48,15 @@ const styles = `
 `;
 
 const Feed = () => {
+  const history = useHistory();
 
+  const handleRegisterClick = () => {
+    history.push('/register');
+  };
+
+  const handleloginClick = () => {
+    history.push('/signin');
+  };
   return (
     <IonPage>
       <IonHeader translucent={true}>
@@ -58,18 +67,41 @@ const Feed = () => {
       <IonContent>
         <Card className="ion-feed-class mx-auto">
           <style>{styles}</style>
-          <div style={{ height: "auto", margin: "0 auto", maxWidth: 350, width: "100%" }}>
+          <div
+            style={{
+              height: 'auto',
+              margin: '0 auto',
+              maxWidth: 350,
+              width: '100%',
+            }}
+          >
             <QRCode
               size={256}
-              style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+              style={{ height: 'auto', maxWidth: '100%', width: '100%' }}
               value="hey"
               viewBox={`0 0 256 256`}
             />
           </div>
-          <h4 className="text-s text-grey items-center scan-text">Show this Code to the Restaurant to Receive a Coupon</h4>
+          <h4 className="text-s text-grey items-center scan-text">
+            Show this Code to the Restaurant to Receive a Coupon
+          </h4>
         </Card>
-
       </IonContent>
+
+      <button
+        type="button"
+        onClick={handleloginClick}
+        className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+      >
+        Login Navigate
+      </button>
+      <button
+        type="button"
+        onClick={handleRegisterClick}
+        className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+      >
+        Register Navigate
+      </button>
     </IonPage>
   );
 };
